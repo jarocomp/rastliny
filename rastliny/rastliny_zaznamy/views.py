@@ -44,3 +44,21 @@ def post_edit(request, pk):
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'rastliny_zaznamy/post_detail.html', {'post': post})
+
+
+def skuska(request):
+    if request.method == "POST":
+        val = request.POST.get('name')
+        values = val.split(' ')
+    return render(request,'rastliny_zaznamy/skuska.html', {'val':values[0]})
+
+def post_search(request):
+    val = ''
+    if request.method == "POST":
+        val = request.POST.get('name')
+
+    posts = Post.objects.filter(title__startswith=val)
+
+    return render(request, 'rastliny_zaznamy/post_search.html', {'posts': posts})
+
+
