@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from .models import Post
 from django.utils import timezone
 from .forms import PostForm
@@ -15,11 +14,6 @@ def post_new(request):
         form = PostForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
-
-
-
-
-
             post.created_date = timezone.now()
             post.save()
             return redirect('post_detail', pk=post.pk)
@@ -45,12 +39,6 @@ def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'rastliny_zaznamy/post_detail.html', {'post': post})
 
-
-def skuska(request):
-    if request.method == "POST":
-        val = request.POST.get('name')
-        values = val.split(' ')
-    return render(request,'rastliny_zaznamy/skuska.html', {'val':values[0]})
 
 def post_search(request):
     val = ''
