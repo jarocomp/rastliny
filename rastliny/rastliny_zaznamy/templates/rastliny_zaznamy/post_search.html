@@ -10,8 +10,10 @@
 </form>
         {% for post in posts %}
             <div>
-
+                <a href="{% url 'post_edit' pk=post.pk %}">
                 <h1>{{ post }}</h1>
+
+
 
             </div>
         {% endfor %}
